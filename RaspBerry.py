@@ -13,9 +13,15 @@ def hello_world():
 
 def led_controller():
     while True:
-        requests.get('http://9d542a1b.ngrok.io/led/switch/open')
+        try:
+            requests.get('http://9d542a1b.ngrok.io/led/switch/open')
+        except:
+            print Exception.message
         time.sleep(10)
-        requests.get('http://9d542a1b.ngrok.io/led/switch/close')
+        try:
+            requests.get('http://9d542a1b.ngrok.io/led/switch/close')
+        except:
+            print Exception.message
         time.sleep(10)
 
 
