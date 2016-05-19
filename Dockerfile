@@ -7,6 +7,7 @@ RUN apt-get install -y python-pip python-dev build-essential
 COPY . /RaspBerry
 WORKDIR /RaspBerry
 
+RUN pip install requests
 RUN pip install -r requirements.txt
 
 EXPOSE 5000
