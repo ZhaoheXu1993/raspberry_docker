@@ -9,8 +9,8 @@ app = Flask(__name__)
 def hello_world():
     temperature, humidity = '', ''
     if request.method == 'POST':
-        temperature = request.form.__getattribute__('temperature')
-        humidity = request.form.__getattribute__('humidity')
+        temperature = request.form['temperature']
+        humidity = request.form['humidity']
     else:
         t = threading.Thread(target=led_controller.LEDController().led_blink())
         t.start()
