@@ -14,22 +14,22 @@ def hello_world():
 
 
 def led_controller():
-    while True:
+    for i in xrange(3):
         try:
             requests.get('http://ylcktest.ngrok.cc/led/switch/open')
         except:
             print Exception.message
-        time.sleep(10)
+        time.sleep(0.01)
         try:
             requests.get('http://ylcktest.ngrok.cc/led/switch/close')
         except:
             print Exception.message
-        time.sleep(10)
-
-
-t = threading.Thread(target=led_controller())
-t.start()
+        time.sleep(0.01)
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    t = threading.Thread(target=led_controller())
+    t.start()
+    app.run(debug=True, host='0.0.0.0', threading=True)
+
+
