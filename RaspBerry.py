@@ -7,13 +7,13 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():
-    t = threading.Thread(target=led_controller.LEDController().led_blink())
-    t.start()
+    temperature, humidity = '', ''
     if request.method == 'POST':
         temperature = request.form.__getattribute__('temperature')
         humidity = request.form.__getattribute__('humidity')
     else:
-        temperature, humidity = '', ''
+        t = threading.Thread(target=led_controller.LEDController().led_blink())
+        t.start()
     return render_template('home.html',
                            temperature=temperature,
                            humidity=humidity)
