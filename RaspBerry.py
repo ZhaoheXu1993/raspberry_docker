@@ -24,7 +24,7 @@ def show():
                       'temperature': data['temperature'],
                       'humidity': data['humidity']})
     return render_template('home.html',
-                           dicts=data_dict)
+                           dicts=data_dict[::-1])
 
 
 if __name__ == '__main__':

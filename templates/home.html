@@ -30,6 +30,13 @@
             top: 50%;
             transform: translate(0, -50%);
         }
+        #table-scroll {
+            position: relative;
+        }
+        #table-scroll {
+            height: 380px;
+            overflow: auto;
+        }
     </style>
 </head>
 <body>
@@ -76,15 +83,19 @@
                 </td>
             </tr>
         </table>
-        <table border="1">
-            {%  for dict in dicts %}
-                <tr>
-                    <td><p>Temperature: {{ dict['temperature'] }}</p></td>
-                    <td><p>Humidity: {{ dict['humidity'] }}</p></td>
-                    <td><p>Current Time: {{ dict['current_time'] }}</p></td>
-                </tr>
-            {%  endfor %}
-        </table>
+        <div id="table-wrapper">
+            <div id="table-scroll">
+                <table border="1">
+                    {%  for dict in dicts %}
+                        <tr>
+                            <td><p>Temperature: {{ dict['temperature'] }}</p></td>
+                            <td><p>Humidity: {{ dict['humidity'] }}</p></td>
+                            <td><p>Current Time: {{ dict['current_time'] }}</p></td>
+                        </tr>
+                    {%  endfor %}
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 </html>
