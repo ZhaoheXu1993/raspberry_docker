@@ -1,22 +1,15 @@
-from flask import Flask, render_template, request
-from flask.ext.cors import CORS
-#import controller.led_controller as led_controller
-#import threading
+from flask import Flask, render_template
 import requests
 import json
 import time
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/": {"origins": "*"}})
-app.config['CORS_HEADERS'] = 'Content-Type'
 
 data_dict = []
 
 
 @app.route('/')
 def hello_world():
-    #t = threading.Thread(target=led_controller.LEDController().led_blink())
-    #t.start()
     return render_template('home.html',
                            temperature='',
                            humidity='')
