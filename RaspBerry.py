@@ -1,7 +1,6 @@
 from flask import Flask, render_template
 import controller.led_controller as led_controller
 import threading
-import gevent
 
 app = Flask(__name__)
 
