@@ -12,17 +12,33 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+            position: relative;
+        }
+        .container {
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" align="center">
         <table>
             <tr>
-                <button type="button" class="btn btn-lg btn-default">OPEN</button>
-                <button type="button" class="btn btn-lg btn-danger">CLOSE</button>
+                <td>
+                    <button type="button" class="btn btn-lg btn-default">OPEN</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-lg btn-danger">CLOSE</button>
+                </td>
             </tr>
             <tr>
-                <p>Temperature: {{ temperature }}</p>
-                <p>Humidity: {{ humidity }}</p>
+                <td><p>Temperature: {{ temperature }}</p></td>
+                <td><p>Humidity: {{ humidity }}</p></td>
             </tr>
         </table>
     </div>
