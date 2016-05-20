@@ -14,27 +14,10 @@
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script language="javascript">
-        var obj;
-        function __doBlink(){
-            var btn_blink = document.getElementsByName('btn_blink');
+        function __op(type, num){
             var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("GET", "http://ylcktest.ngrok.cc/led/switch/open", false);
+            xmlHttp.open("GET", "http://ylcktest.ngrok.cc/led/switch/"+type+"/"+num, false);
             xmlHttp.send(null);
-            return xmlHttp.responseText;
-        }
-
-        function __show(){
-            var btn_show = document.getElementsByName('btn_show');
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("GET", "http://ylcktest.ngrok.cc/temperandhumidity", false);
-            xmlHttp.send(null);
-            obj = JSON.parse(xmlHttp.responseText);
-            var out1;
-            out1 = '<p>' + obj[0].display + '</p>';
-            document.getElementById("tem").innerHTML=out1;
-            var out2;
-            out2 = '<p>' + obj[1].display + '</p>';
-            document.getElementById("hum").innerHTML=out2;
         }
     </script>
     <style>
@@ -52,20 +35,55 @@
 <body>
     <div class="container" align="center">
         <table>
+             <tr>
+                <td><button name="btn_show" onclick="window.location.href='/show'" type="button" class="btn btn-danger">
+                    GET TEMPERATURE AND HUMIDITY</button></td>
+            </tr>
+        </table>
+        <table>
             <tr>
                 <td>
-                    <button name="btn_blink" type="button" class="btn btn-lg btn-default" onclick="__doBlink()">BLINK</button>
+                    <button type="button" class="btn btn-default btn-block" onclick="__op('open', '22')">1UP</button>
                 </td>
                 <td>
-                    <button name="btn-get" type="button" class="btn btn-lg btn-danger" onclick="__show()">GET</button>
+                    <button type="button" class="btn btn-default btn-block" onclick="__op('open', '26')">2UP</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-default btn-block" onclick="__op('open', '24')">3UP</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-default btn-block" onclick="__op('open', '4')">4UP</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-default btn-block" onclick="__op('open', '12')">5UP</button>
                 </td>
             </tr>
             <tr>
-                <td><p>Temperature: {{ Temperature }}</p></td>
-                <td><div id="tem"></div></td>
-                <td><p>Humidity: {{ humidity }}</p></td>
-                <td><div id="hum"></div></td>
+                <td>
+                    <button type="button" class="btn btn-default btn-block" onclick="__op('close', '22')">1DOWN</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-default btn-block" onclick="__op('close', '26')">2DOWN</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-default btn-block" onclick="__op('close', '24')">3DOWN</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-default btn-block" onclick="__op('close', '4')">4DOWN</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-default btn-block" onclick="__op('close', '12')">5DOWN</button>
+                </td>
             </tr>
+        </table>
+        <table border="1">
+            {%  for dict in dicts %}
+                <tr>
+                    <td><p>Temperature: {{ dict['temperature'] }}</p></td>
+                    <td><p>Humidity: {{ dict['humidity'] }}</p></td>
+                    <td><p>Current Time: {{ dict['current_time'] }}</p></td>
+                </tr>
+            {%  endfor %}
         </table>
     </div>
 </body>

@@ -18,3 +18,11 @@ class LEDController(object):
             except IOError:
                 print Exception.message
             time.sleep(0.01)
+
+    @staticmethod
+    def led_on(num):
+        num = str(num)
+        try:
+            requests.get('http://ylcktest.ngrok.cc/led/switch/open/'+num)
+        except IOError:
+            print Exception.message
