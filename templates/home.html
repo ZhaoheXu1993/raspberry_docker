@@ -13,6 +13,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/jquery.js"></script>
+    <script language="javascript">
+        function __doBlink(){
+            var btn_blink = document.getElementsByName('btn_blink')
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", "http://ylcktest.ngrok.cc/led/switch/open", false)
+            xmlHttp.send(null);
+            return xmlHttp.responseText
+        }
+    </script>
     <style>
         html, body {
             height: 100%;
@@ -30,11 +39,11 @@
         <table>
             <tr>
                 <td>
-                    <button type="button" class="btn btn-lg btn-default">OPEN</button>
+                    <button name="btn_blink" type="button" class="btn btn-lg btn-default" onclick="__doBlink()">BLINK</button>
                 </td>
-                <td>
+                <!--<td>
                     <button type="button" class="btn btn-lg btn-danger">CLOSE</button>
-                </td>
+                </td>-->
             </tr>
             <tr>
                 <td><p>Temperature: {{ temperature }}</p></td>
