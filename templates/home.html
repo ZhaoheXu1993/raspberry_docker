@@ -14,12 +14,27 @@
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script language="javascript">
+        var obj;
         function __doBlink(){
-            var btn_blink = document.getElementsByName('btn_blink')
+            var btn_blink = document.getElementsByName('btn_blink');
             var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("GET", "http://ylcktest.ngrok.cc/led/switch/open", false)
+            xmlHttp.open("GET", "http://ylcktest.ngrok.cc/led/switch/open", false);
             xmlHttp.send(null);
-            return xmlHttp.responseText
+            return xmlHttp.responseText;
+        }
+
+        function __show(){
+            var btn_show = document.getElementsByName('btn_show');
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", "http://ylcktest.ngrok.cc/temperandhumidity", false);
+            xmlHttp.send(null);
+            obj = JSON.parse(xmlHttp.responseText);
+            var out1;
+            out1 = '<p>' + obj[0].display + '</p>';
+            document.getElementById("tem").innerHTML=out1;
+            var out2;
+            out2 = '<p>' + obj[1].display + '</p>';
+            document.getElementById("hum").innerHTML=out2;
         }
     </script>
     <style>
@@ -41,13 +56,15 @@
                 <td>
                     <button name="btn_blink" type="button" class="btn btn-lg btn-default" onclick="__doBlink()">BLINK</button>
                 </td>
-                <!--<td>
-                    <button type="button" class="btn btn-lg btn-danger">CLOSE</button>
-                </td>-->
+                <td>
+                    <button name="btn-get" type="button" class="btn btn-lg btn-danger" onclick="__show()">GET</button>
+                </td>
             </tr>
             <tr>
-                <td><p>Temperature: {{ temperature }}</p></td>
+                <td><p>Temperature: {{ Temperature }}</p></td>
+                <td><div id="tem"></div></td>
                 <td><p>Humidity: {{ humidity }}</p></td>
+                <td><div id="hum"></div></td>
             </tr>
         </table>
     </div>
